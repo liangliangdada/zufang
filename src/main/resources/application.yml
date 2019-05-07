@@ -1,0 +1,16 @@
+server:
+  port: 8910
+  servlet:
+    context-path: /zufang
+
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    charset: utf-8
+    cache: false
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    check-template-location: true
+    content-type: text/html
+    suffix: .html
