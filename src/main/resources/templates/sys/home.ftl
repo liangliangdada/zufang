@@ -15,7 +15,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo"><h3>企业管理系统</h3></div>
+        <div class="layui-logo"><h3>租房管理系统</h3></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
         </ul>
