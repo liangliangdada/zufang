@@ -1,5 +1,6 @@
 package com.liang.zufang.entity.sys;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.liang.zufang.entity.BaseEntity;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
  **/
 @Entity
 @Table(name = "sys_user")
+@TableName(value = "sys_user")
 public class User extends BaseEntity {
 
     @Column(length = 100)

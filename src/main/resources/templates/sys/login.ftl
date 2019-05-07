@@ -14,7 +14,7 @@
     <div class="top">
         <h2>租房管理系统</h2>
     </div>
-    <form method="post" class="layui-form" action="${request.getContextPath()}/login/loginto">
+    <form method="post" class="layui-form" action="${request.getContextPath()}/login/checkLogin">
         <div class="lock-holder">
             <div class="form-group pull-left input-username">
                 <label style="top: 5px">账号</label>
@@ -47,21 +47,19 @@
         var layer = layui.layer;
         var form = layui.form;
         form.on('submit(login-filter)', function(data){
-
-            window.location.href="${request.getContextPath()}/login/home";
-            <#--$.ajax({-->
-                <#--url: data.form.action,-->
-                <#--type: data.form.method,-->
-                <#--data: $(data.form).serialize(),-->
-                <#--dataType:"json",-->
-                <#--success: function (info) {-->
-                    <#--if(info.success){-->
-                        <#--window.location.href="${request.getContextPath()}/home/index";-->
-                    <#--}else{-->
-                        <#--layer.msg(info.msg, {offset: '10%',icon: 5});-->
-                    <#--}-->
-                <#--}-->
-            <#--});-->
+            $.ajax({
+                url: data.form.action,
+                type: data.form.method,
+                data: $(data.form).serialize(),
+                dataType:"json",
+                success: function (data) {
+                    if(data.success){
+                        window.location.href="${request.getContextPath()}/home/index";
+                    }else{
+                        layer.msg(data.msg, {offset: '10%',icon: 5});
+                    }
+                }
+            });
             return false;
         });
     });
