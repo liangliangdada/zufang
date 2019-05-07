@@ -33,6 +33,11 @@ public class Menu extends BaseEntity {
 
     private Integer sort;
 
+    /**
+     * 是否为公共菜单
+     */
+    private Integer isCommon;
+
     public String getName() {
         return name;
     }
@@ -50,7 +55,7 @@ public class Menu extends BaseEntity {
     }
 
     public Integer getType() {
-        return type;
+        return type == null?0:type;
     }
 
     public void setType(Integer type) {
@@ -79,5 +84,13 @@ public class Menu extends BaseEntity {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public Integer getIsCommon() {
+        return isCommon == null?0:isCommon;
+    }
+
+    public void setIsCommon(Integer isCommon) {
+        this.isCommon = isCommon;
     }
 }
