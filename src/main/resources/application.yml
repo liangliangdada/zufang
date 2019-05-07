@@ -14,7 +14,7 @@ spring:
     check-template-location: true
     request-context-attribute: request
     content-type: text/html
-    suffix: .html
+    suffix: .ftl
   datasource:
     druid:
       url: jdbc:mysql://localhost:3306/zufang?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC

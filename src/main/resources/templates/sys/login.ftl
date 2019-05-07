@@ -47,19 +47,21 @@
         var layer = layui.layer;
         var form = layui.form;
         form.on('submit(login-filter)', function(data){
-            $.ajax({
-                url: data.form.action,
-                type: data.form.method,
-                data: $(data.form).serialize(),
-                dataType:"json",
-                success: function (info) {
-                    if(info.success){
-                        window.location.href="${request.getContextPath()}/home/index";
-                    }else{
-                        layer.msg(info.msg, {offset: '10%',icon: 5});
-                    }
-                }
-            });
+
+            window.location.href="${request.getContextPath()}/login/home";
+            <#--$.ajax({-->
+                <#--url: data.form.action,-->
+                <#--type: data.form.method,-->
+                <#--data: $(data.form).serialize(),-->
+                <#--dataType:"json",-->
+                <#--success: function (info) {-->
+                    <#--if(info.success){-->
+                        <#--window.location.href="${request.getContextPath()}/home/index";-->
+                    <#--}else{-->
+                        <#--layer.msg(info.msg, {offset: '10%',icon: 5});-->
+                    <#--}-->
+                <#--}-->
+            <#--});-->
             return false;
         });
     });
