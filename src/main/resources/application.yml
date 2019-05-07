@@ -12,6 +12,7 @@ spring:
     expose-session-attributes: true
     expose-spring-macro-helpers: true
     check-template-location: true
+    request-context-attribute: request
     content-type: text/html
     suffix: .html
   datasource:
@@ -46,6 +47,7 @@ spring:
         reset-enable: true #禁止手动重置监控数据
         login-username: admin
         login-password: admin
+
   jpa:
     hibernate:
       ddl-auto: update
