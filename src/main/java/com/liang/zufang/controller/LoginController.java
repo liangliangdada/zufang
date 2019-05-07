@@ -33,16 +33,15 @@ public class LoginController {
     public JsonResult checkLogin(HttpServletRequest request,String userName,String password){
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(userName, DigestUtils.md5DigestAsHex(password.getBytes()));
-        //进行验证，这里可以捕获异常，然后返回对应信息
         try {
             subject.login(usernamePasswordToken);
         }catch (UnknownAccountException e){
-            return JsonResult.resultMsg(false,"用户不存在！");
+            return JsonResult.build(false,"用户不存在！");
         }catch (IncorrectCredentialsException e){
-            return JsonResult.resultMsg(false,"密码错误！");
+            return JsonResult.build(false,"密码错误！");
         }
         request.getSession().setAttribute("user", subject.getPrincipal());
-        return JsonResult.resultMsg(true,"登录成功！");
+        return JsonResult.build(true,"登录成功！");
     }
 
 }
