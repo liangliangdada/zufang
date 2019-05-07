@@ -2,7 +2,6 @@ package com.liang.zufang.entity.sys;
 
 import com.liang.zufang.entity.BaseEntity;
 
-import javax.naming.Name;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
