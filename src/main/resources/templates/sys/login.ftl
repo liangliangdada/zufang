@@ -12,7 +12,7 @@
 <canvas id="c"></canvas>
 <div class="login-layout">
     <div class="top">
-        <h2>租房管理系统</h2>
+        <h2>房屋租赁管理系统</h2>
     </div>
     <form method="post" class="layui-form" action="${request.getContextPath()}/login/checkLogin">
         <div class="lock-holder">

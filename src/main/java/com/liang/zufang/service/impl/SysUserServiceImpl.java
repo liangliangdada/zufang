@@ -7,6 +7,7 @@ import com.liang.zufang.service.SysUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author liuliang
@@ -24,5 +25,15 @@ public class SysUserServiceImpl implements SysUserService {
         QueryWrapper<User> queryWrapper = new  QueryWrapper<>();
         queryWrapper.eq("user_name", username);
         return userMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public List<String> selectRolesByUserId(Long id) {
+        return userMapper.selectRolesByUserId(id);
+    }
+
+    @Override
+    public List<String> selectPermissionsByUserId(Long id) {
+        return userMapper.selectPermissionsByUserId(id);
     }
 }

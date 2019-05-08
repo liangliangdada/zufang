@@ -12,6 +12,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author liuliang
@@ -32,8 +33,12 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         User user  = (User)principalCollection.getPrimaryPrincipal();
+        List<String> roles = userService.selectRolesByUserId(user.getId());
+        List<String> permissions = userService.selectPermissionsByUserId(user.getId());
+        authorizationInfo.addRoles(roles);
+        authorizationInfo.addStringPermissions(permissions);
         //获取用户角色和授权码
-        return null;
+        return authorizationInfo;
     }
 
     /**
@@ -49,7 +54,6 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         //获取用户的输入的账号.
         String username = (String)authenticationToken.getPrincipal();
-        //通过username从数据库中查找 User对象，如果找到，没找到.
         //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
         User user = userService.selectUserByUserName(username);
         if(user == null){

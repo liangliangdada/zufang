@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liang.zufang.mapper.SysUserMapper">
+    <select id="selectRolesByUserId" resultType="string">
+        SELECT t.code from  sys_role t INNER JOIN sys_user_role t1 on t.id=t1.role_id WHERE t1.user_id=#{userId};
+    </select>
+
+    <select id="selectPermissionsByUserId" resultType="string">
+        SELECT t.`code` from sys_menu t INNER JOIN sys_role_menu t1 on t.id= t1.menu_id
+        INNER JOIN sys_user_role t2 on t1.role_id = t2.role_id and t2.user_id=#{userId};
+    </select>
+</mapper>
