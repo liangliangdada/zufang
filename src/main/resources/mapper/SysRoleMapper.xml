@@ -4,4 +4,8 @@
     <select id="selectTreeByUserId" resultType="map">
         SELECT * from  sys_role
     </select>
+
+    <select id="selectAll" resultType="map">
+        SELECT * from  sys_role
+    </select>
 </mapper>

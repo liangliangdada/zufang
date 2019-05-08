@@ -9,4 +9,6 @@ import java.util.Map;
 public interface SysRoleMapper extends BaseMapper<Role> {
 
     List<Map<String,Object>> selectTreeByUserId(Long userId);
+
+    List<Role> selectAll();
 }
