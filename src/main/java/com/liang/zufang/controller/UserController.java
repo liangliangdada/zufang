@@ -61,7 +61,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("permission")
-    public String permission(){
+    public String permission(HttpServletRequest request,Long id){
+        request.setAttribute("userId", id);
         return "user/permission";
     }
 

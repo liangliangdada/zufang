@@ -74,7 +74,7 @@
             if(layEvent == 'edit'){
                 edit("${request.getContextPath()}/user/edit?id="+data.id);
             }else if(layEvent == 'permission'){
-                permission();
+                permission(data.id);
             }else if(layEvent == 'del'){
                 layer.msg('del');
             }
@@ -97,15 +97,15 @@
         };
 
         //授权
-        function permission() {
+        function permission(id) {
             layer.open({
                 title:'用户授权',
                 type: 2,
-                content: '${request.getContextPath()}/user/permission',
+                content: '${request.getContextPath()}/user/permission?id='+id,
                 area: ['500px', '300px'],
                 btn: ['保存','取消'],
                 yes: function(index, layero){
-                    var submitForm = layer.getChildFrame('#submitForm', index);
+                    var submitForm = layer.getChildFrame('#save', index);
                     submitForm.click();
                     table.reload('user-table');
                 }
