@@ -25,7 +25,7 @@ public class HomeController {
 
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String index(HttpServletRequest request){
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("currentUser");
         List<Menu> menuList = userService.selectMenusByUserId(user.getId());
         request.setAttribute("menuList", menuList);
         return "sys/main";

@@ -40,7 +40,7 @@ public class LoginController {
         }catch (IncorrectCredentialsException e){
             return JsonResult.build(false,"密码错误！");
         }
-        request.getSession().setAttribute("user", subject.getPrincipal());
+        request.getSession().setAttribute("currentUser", subject.getPrincipal());
         return JsonResult.build(true,"登录成功！");
     }
 

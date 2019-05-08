@@ -47,4 +47,18 @@ public class SysUserServiceImpl implements SysUserService {
     public List<User> selectAll() {
         return userMapper.selectList(null);
     }
+
+    @Override
+    public void save(User user) {
+        if(user.getId() != null){
+            userMapper.updateById(user);
+        }else {
+            userMapper.insert(user);
+        }
+    }
+
+    @Override
+    public User selectUserById(Long id) {
+        return userMapper.selectById(id);
+    }
 }

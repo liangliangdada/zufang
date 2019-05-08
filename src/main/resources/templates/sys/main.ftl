@@ -23,7 +23,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:void(0);">
                     <img src="${request.getContextPath()}/images/userHead.png" class="layui-nav-img">
-                    ${user.name}
+                    ${currentUser.name}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a id="change-password" href="javascript:void(0)">修改密码</a></dd>

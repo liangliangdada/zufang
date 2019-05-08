@@ -58,7 +58,10 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.liang.zufang.entity
-
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: auto #id自助
 #分页插件配置
 pagehelper:
   helper-dialect: mysql
