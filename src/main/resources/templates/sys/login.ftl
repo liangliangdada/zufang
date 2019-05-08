@@ -54,7 +54,7 @@
                 dataType:"json",
                 success: function (data) {
                     if(data.success){
-                        window.location.href="${request.getContextPath()}/home/index";
+                        window.location.href="${request.getContextPath()}/main/index";
                     }else{
                         layer.msg(data.msg, {offset: '10%',icon: 5});
                     }

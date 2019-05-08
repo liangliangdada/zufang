@@ -16,7 +16,7 @@ import java.util.List;
  *
  * */
 @Controller
-@RequestMapping("home")
+@RequestMapping("main")
 public class HomeController {
 
     @Resource
@@ -28,7 +28,7 @@ public class HomeController {
         User user = (User) request.getSession().getAttribute("user");
         List<Menu> menuList = userService.selectMenusByUserId(user.getId());
         request.setAttribute("menuList", menuList);
-        return "sys/home";
+        return "sys/main";
     }
 
 }
