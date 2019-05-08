@@ -24,4 +24,6 @@ public interface SysUserService {
     List<String> selectPermissionsByUserId(Long id);
 
     List<Menu> selectMenusByUserId(Long id);
+
+    List<User> selectAll();
 }

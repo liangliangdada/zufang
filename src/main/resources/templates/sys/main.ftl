@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>房屋租赁管理系统</title>
+    <link rel="shortcut icon" href="/zufang/favicon.ico">
     <link rel="stylesheet" href="${request.getContextPath()}/js/plugins/layui/css/layui.css">
     <style type="text/css">
         .first-tab i.layui-tab-close {
@@ -87,7 +88,7 @@
     <div class="layui-footer">
         <!-- 底部固定区域 -->
         <div align="center">
-            版权所有 https://gitee.com/liangliangdada/insist.git
+            版权所有 https://github.com/liangliangdada/zufang.git
         </div>
     </div>
 </div>

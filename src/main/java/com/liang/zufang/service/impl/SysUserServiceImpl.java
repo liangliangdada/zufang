@@ -42,4 +42,9 @@ public class SysUserServiceImpl implements SysUserService {
     public List<Menu> selectMenusByUserId(Long id) {
         return userMapper.selectMenusByUserId(id);
     }
+
+    @Override
+    public List<User> selectAll() {
+        return userMapper.selectList(null);
+    }
 }
