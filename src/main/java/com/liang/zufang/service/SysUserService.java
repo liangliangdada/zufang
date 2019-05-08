@@ -1,5 +1,6 @@
 package com.liang.zufang.service;
 
+import com.liang.zufang.entity.sys.Menu;
 import com.liang.zufang.entity.sys.User;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface SysUserService {
      * @return
      */
     List<String> selectPermissionsByUserId(Long id);
+
+    List<Menu> selectMenusByUserId(Long id);
 }

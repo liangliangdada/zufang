@@ -1,6 +1,7 @@
 package com.liang.zufang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.liang.zufang.entity.sys.Menu;
 import com.liang.zufang.entity.sys.User;
 import com.liang.zufang.mapper.SysUserMapper;
 import com.liang.zufang.service.SysUserService;
@@ -35,5 +36,10 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public List<String> selectPermissionsByUserId(Long id) {
         return userMapper.selectPermissionsByUserId(id);
+    }
+
+    @Override
+    public List<Menu> selectMenusByUserId(Long id) {
+        return userMapper.selectMenusByUserId(id);
     }
 }
