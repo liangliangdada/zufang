@@ -27,7 +27,7 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public List<Role> selectAll() {
-        return sysRoleMapper.selectAll();
+        return sysRoleMapper.selectList(null);
     }
 
 

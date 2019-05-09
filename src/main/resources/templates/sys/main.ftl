@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>房屋租赁管理系统</title>
     <link rel="shortcut icon" href="/zufang/favicon.ico">
-    <link rel="stylesheet" href="${request.getContextPath()}/js/plugins/layui/css/layui.css">
+    <#include "../common/static.ftl">
     <style type="text/css">
         .first-tab i.layui-tab-close {
             display: none !important;
@@ -118,7 +118,6 @@
     </form>
 </div>
 </body>
-<script src="${request.getContextPath()}/js/plugins/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
     layui.use(['element', 'layer', 'form'], function () {

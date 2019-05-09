@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>用户授权</title>
+    <#include "../common/static.ftl">
     <link rel="stylesheet" href="${request.getContextPath()}/css/plugins/zTree/zTreeStyle/zTreeStyle.css">
-    <link rel="stylesheet" href="${request.getContextPath()}/js/plugins/layui/css/layui.css" media="all">
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery-1.4.4.min.js"></script>
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery.ztree.core.js"></script>
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery.ztree.excheck.js"></script>
-    <script src="${request.getContextPath()}/js/plugins/layui/layui.js"></script>
 </head>
 <body>
 <div>

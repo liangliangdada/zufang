@@ -1,13 +1,11 @@
 package com.liang.zufang.entity.sys;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.liang.zufang.entity.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import java.util.List;
-
 /**
  * @author liuliang
  * @description 角色
@@ -15,6 +13,7 @@ import java.util.List;
  **/
 @Entity
 @Table(name = "sys_role")
+@TableName(value = "sys_role")
 public class Role extends BaseEntity {
 
     @Column(length = 100)

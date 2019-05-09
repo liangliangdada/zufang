@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>欢迎登陆</title>
-    <link rel="stylesheet" href="${request.getContextPath()}/css/login.css" media="all" />
-    <link rel="stylesheet" href="${request.getContextPath()}/js/plugins/layui/css/layui.css">
+    <#include "../common/static.ftl">
+    <link rel="stylesheet" href="${request.getContextPath()}/css/login.css" media="all">
 </head>
 
 <body>
@@ -35,9 +35,7 @@
     </form>
     <div class="bottom"></div>
 </div>
-</body>
 <script type="text/javascript" src="${request.getContextPath()}/js/login.js"></script>
-<script src="${request.getContextPath()}/js/plugins/layui/layui.js"></script>
 <script type="text/javascript">
     layui.use(['layer','form'],function(){
         if (window != top){
@@ -64,4 +62,5 @@
         });
     });
 </script>
+</body>
 </html>

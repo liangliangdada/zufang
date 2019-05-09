@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>用户列表</title>
-    <link rel="stylesheet" href="${request.getContextPath()}/js/plugins/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="${request.getContextPath()}/css/public.css">
-    <script src="${request.getContextPath()}/js/plugins/layui/layui.js"></script>
+    <#include "../common/static.ftl">
 </head>
 <body>
 <table id="user-table" lay-filter="table-filter"></table>
