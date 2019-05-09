@@ -36,10 +36,7 @@
             var userId = $("#userId").val();
             var nodes = zTreeObj.getCheckedNodes(true);
             if(nodes.length == 0){
-                layui.use(['layer'],function () {
-                    var layer = layui.layer;
-                    layer.msg('请选择角色！！', {icon: 5});
-                });
+                parent.layer.msg('请选择角色！！', {icon: 5});
                 return false;
             }
             var para = {};

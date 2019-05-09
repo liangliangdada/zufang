@@ -23,7 +23,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class SysUserController {
 
     @Resource
     private SysUserService userService;

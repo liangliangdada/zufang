@@ -1,3 +1,7 @@
+/**
+ * 表单序列化为json
+ * @param form
+ */
 function serializeObject(form) {
     var o = {};
     var a = $(form).serializeArray();
@@ -13,3 +17,12 @@ function serializeObject(form) {
     });
     return o;
 };
+/**
+ * layer全局样式
+ */
+layui.use('layer',function () {
+    var layer = layui.layer;
+    layer.config({
+        skin: 'layer-open-class'
+    });
+});

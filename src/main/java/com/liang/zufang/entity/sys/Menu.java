@@ -1,5 +1,6 @@
 package com.liang.zufang.entity.sys;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.liang.zufang.entity.BaseEntity;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.Table;
  **/
 @Entity
 @Table(name = "sys_menu")
+@TableName(value = "sys_menu")
 public class Menu extends BaseEntity {
 
     @Column(length = 100)
