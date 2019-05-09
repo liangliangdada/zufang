@@ -6,6 +6,7 @@ import com.liang.zufang.entity.sys.User;
 import com.liang.zufang.service.SysUserService;
 import com.liang.zufang.utils.DataGrid;
 import com.liang.zufang.utils.JsonResult;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -53,7 +56,13 @@ public class UserController {
     @RequestMapping("save")
     @ResponseBody
     public JsonResult save(User user){
-        userService.save(user);
+        try {
+            userService.save(user);
+        }catch (Exception e){
+            if(e instanceof DuplicateKeyException){
+                return JsonResult.build(false, "用户名重复！");
+            }
+        }
         return JsonResult.build(true, "保存成功！");
     }
 

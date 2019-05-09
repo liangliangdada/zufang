@@ -32,6 +32,7 @@
     </div>
 </script>
 <script>
+    var tableIns;
     layui.use(['layer','table'], function(){
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -41,7 +42,7 @@
         });
 
         //数据表格
-        table.render({
+        tableIns = table.render({
             elem: '#user-table',
             toolbar:'#table-tools',
             height: 'full-45',
@@ -94,7 +95,7 @@
                 yes: function(index, layero){
                     var submitForm = layer.getChildFrame('#submitForm', index);
                     submitForm.click();
-                    table.reload('user-table');
+                    //table.reload('user-table');
                 }
             });
         };
@@ -135,7 +136,6 @@
                 layer.close(index);
             });
         };
-
     });
 </script>
 </body>

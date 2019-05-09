@@ -43,7 +43,10 @@
                     success: function (data) {
                         if(data.success){
                             parent.layer.msg(data.msg, {icon: 1});
+                            //关闭父页面
                             parent.layer.close(index);
+                            //刷新父页面table
+                            parent.layui.table.reload('user-table');
                         }else{
                             parent.layer.msg(data.msg, {icon: 5});
                         }
@@ -53,6 +56,7 @@
                 return false;//阻止表单跳转。如果需要表单跳转
             });
         });
+        
     </script>
 </body>
 </html>
