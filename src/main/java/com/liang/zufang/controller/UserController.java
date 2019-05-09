@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -39,7 +37,7 @@ public class UserController {
     @ResponseBody
     public DataGrid list(User user){
         PageHelper.startPage(user.getPage(), user.getLimit());
-        List<User> userList = userService.selectAll();
+        List<User> userList = userService.selectAll(user);
         PageInfo<User> userPageInfo = new PageInfo<User>(userList);
         return DataGrid.build(userPageInfo.getList(), userPageInfo.getTotal());
     }

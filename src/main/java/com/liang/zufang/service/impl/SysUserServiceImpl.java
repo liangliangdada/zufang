@@ -5,6 +5,7 @@ import com.liang.zufang.entity.sys.Menu;
 import com.liang.zufang.entity.sys.User;
 import com.liang.zufang.mapper.SysUserMapper;
 import com.liang.zufang.service.SysUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,8 +47,12 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<User> selectAll() {
-        return userMapper.selectList(null);
+    public List<User> selectAll(User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
+        if(StringUtils.isNotBlank(user.getName())){
+            queryWrapper.like("name", user.getName());
+        }
+        return userMapper.selectList(queryWrapper);
     }
 
     @Override

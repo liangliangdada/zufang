@@ -25,7 +25,7 @@ public interface SysUserService {
 
     List<Menu> selectMenusByUserId(Long id);
 
-    List<User> selectAll();
+    List<User> selectAll(User user);
 
     void save(User user);
 

@@ -5,7 +5,6 @@
     <title>用户授权</title>
     <#include "../common/static.ftl">
     <link rel="stylesheet" href="${request.getContextPath()}/css/plugins/zTree/zTreeStyle/zTreeStyle.css">
-    <script src="${request.getContextPath()}/js/plugins/zTree/jquery-1.4.4.min.js"></script>
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery.ztree.core.js"></script>
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery.ztree.excheck.js"></script>
 </head>

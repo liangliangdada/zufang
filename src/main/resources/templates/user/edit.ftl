@@ -18,7 +18,7 @@
             <div class="layui-form-item" >
                 <label class="layui-form-label">用户名：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="userName" lay-verify="title" autocomplete="off" placeholder="请输入用户名"
+                    <input type="text" name="userName" lay-verify="required" autocomplete="off" placeholder="请输入用户名"
                            class="layui-input" value="${(user.userName)!}">
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         return false;
                     }
                 });
-                return false;//阻止表单跳转。如果需要表单跳转
+                return false;//阻止表单跳转
             });
         });
         

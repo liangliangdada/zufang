@@ -6,9 +6,14 @@
     <#include "../common/static.ftl">
 </head>
 <body>
-<div style="">
-    姓名： <input class="" name="id" id="demoReload" autocomplete="off">
-    <button class="layui-btn layui-btn-xs" data-type="reload">搜索</button>
+<div>
+
+    <form id="search-form" method="post">
+        姓名： <input name="name" type="text"/>
+        <#--必须用<a>否则表格会加载两次.....坑的一比-->
+        <a href="javascript:void(0)" id="search" class="layui-btn layui-btn-xs" data-type="reload">搜索</a>
+    </form>
+
 </div>
 <table id="user-table" lay-filter="table-filter"></table>
 <script type="text/html" id="table-tools">
@@ -32,7 +37,6 @@
     </div>
 </script>
 <script>
-    var tableIns;
     layui.use(['layer','table'], function(){
         var $ = layui.jquery;
         var layer = layui.layer;
@@ -42,7 +46,7 @@
         });
 
         //数据表格
-        tableIns = table.render({
+        table.render({
             elem: '#user-table',
             toolbar:'#table-tools',
             height: 'full-45',
@@ -136,6 +140,13 @@
                 layer.close(index);
             });
         };
+
+        $("#search").click(function () {
+            var params = serializeObject("#search-form");
+            console.log(params);
+            table.reload('user-table', {where: params});
+        });
+
     });
 </script>
 </body>
