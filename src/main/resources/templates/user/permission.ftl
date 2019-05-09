@@ -10,7 +10,7 @@
     <script src="${request.getContextPath()}/js/plugins/zTree/jquery.ztree.excheck.js"></script>
 </head>
 <body>
-<div>
+<div style="text-align: center">
     <ul id="roleTree" class="ztree"></ul>
 </div>
 <div class="layui-hide">
@@ -22,7 +22,7 @@
     var setting = {
         async:{
             enable: true,
-            url: "${request.getContextPath()}/role/tree?userId=1",
+            url: "${request.getContextPath()}/role/tree?userId=${userId}",
             //otherParam: { "roleId":function(){return roleId}} //获取全局变量值
         },
         check:{
@@ -37,14 +37,34 @@
             var userId = $("#userId").val();
             var nodes = zTreeObj.getCheckedNodes(true);
             if(nodes.length == 0){
-
                 layui.use(['layer'],function () {
                     var layer = layui.layer;
                     layer.msg('请选择角色！！', {icon: 5});
                 });
                 return false;
             }
-            console.log(nodes);
+            var para = {};
+            var roles = [];
+            for (var i=0;i<nodes.length;i++){
+                roles[i] = nodes[i].id
+            }
+            para.userId = "${userId}";
+            para.roles = roles;
+            $.ajax({
+                url: "${request.getContextPath()}/user/saveUserRoles",
+                type: "post",
+                data: para,
+                dataType:"json",
+                success: function (data) {
+                    if(data.success){
+                        parent.layer.msg(data.msg, {icon: 1});
+                        parent.layer.close(index);
+                    }else{
+                        parent.layer.msg(data.msg, {icon: 5});
+                    }
+                    return false;
+                }
+            });
         });
     });
 </script>

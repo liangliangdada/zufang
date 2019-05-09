@@ -6,6 +6,10 @@
     <#include "../common/static.ftl">
 </head>
 <body>
+<div style="">
+    姓名： <input class="" name="id" id="demoReload" autocomplete="off">
+    <button class="layui-btn layui-btn-xs" data-type="reload">搜索</button>
+</div>
 <table id="user-table" lay-filter="table-filter"></table>
 <script type="text/html" id="table-tools">
     <div>
@@ -36,10 +40,11 @@
             skin: 'layer-open-class'
         });
 
+        //数据表格
         table.render({
             elem: '#user-table',
             toolbar:'#table-tools',
-            height: 'full-20',
+            height: 'full-45',
             url: '${request.getContextPath()}/user/list',
             page: true,
             limit:20,
@@ -74,7 +79,7 @@
             }else if(layEvent == 'permission'){
                 permission(data.id);
             }else if(layEvent == 'del'){
-                layer.msg('del');
+                del(data.id);
             }
         });
 
@@ -100,13 +105,34 @@
                 title:'用户授权',
                 type: 2,
                 content: '${request.getContextPath()}/user/permission?id='+id,
-                area: ['500px', '300px'],
+                area: ['300px', '300px'],
                 btn: ['保存','取消'],
                 yes: function(index, layero){
                     var submitForm = layer.getChildFrame('#save', index);
                     submitForm.click();
-                    table.reload('user-table');
                 }
+            });
+        };
+
+        //删除
+        function del(id) {
+            layer.confirm('确认删除该用户？', function(index){
+                $.ajax({
+                    url: '${request.getContextPath()}/user/del',
+                    type: "post",
+                    data: {"id":id},
+                    dataType:"json",
+                    success: function (data) {
+                        if(data.success){
+                            layer.msg(data.msg, {icon: 1});
+                            table.reload('user-table');
+                        }else{
+                            layer.msg(data.msg, {icon: 5});
+                        }
+                        return false;
+                    }
+                });
+                layer.close(index);
             });
         };
 

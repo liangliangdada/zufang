@@ -30,4 +30,8 @@ public interface SysUserService {
     void save(User user);
 
     User selectUserById(Long id);
+
+    void saveUserRoles(Long userId, Long[] roles);
+
+    void del(Long id);
 }

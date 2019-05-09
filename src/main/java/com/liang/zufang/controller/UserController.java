@@ -8,6 +8,7 @@ import com.liang.zufang.utils.DataGrid;
 import com.liang.zufang.utils.JsonResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -56,6 +57,13 @@ public class UserController {
         return JsonResult.build(true, "保存成功！");
     }
 
+    @RequestMapping("del")
+    @ResponseBody
+    public JsonResult del(Long id){
+        userService.del(id);
+        return JsonResult.build(true, "删除成功！");
+    }
+
     /**
      * 用户授权
      * @return
@@ -64,6 +72,19 @@ public class UserController {
     public String permission(HttpServletRequest request,Long id){
         request.setAttribute("userId", id);
         return "user/permission";
+    }
+
+    /**
+     * 保存用户角色
+     * @param userId
+     * @param roles
+     * @return
+     */
+    @RequestMapping("saveUserRoles")
+    @ResponseBody
+    public JsonResult saveUserRoles(Long userId, @RequestParam(value = "roles[]") Long[] roles){
+        userService.saveUserRoles(userId,roles);
+        return JsonResult.build(true, "保存成功！");
     }
 
 }

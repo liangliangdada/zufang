@@ -14,4 +14,17 @@
       SELECT DISTINCT t.id,t.name,t.parent_id,t.url from sys_menu t INNER JOIN sys_role_menu t1 on t.id= t1.menu_id
       INNER JOIN sys_user_role t2 on t1.role_id = t2.role_id and t2.user_id=#{userId}
     </select>
+
+    <insert id="saveUserRoles">
+        INSERT INTO sys_user_role(user_id,role_id)
+        VALUES
+        <foreach collection="roles" item="roleId" separator=",">
+            (#{userId},#{roleId})
+        </foreach>
+    </insert>
+
+    <delete id="delRolesByUserId">
+        delete FROM sys_user_role where user_id = #{userId}
+    </delete>
+
 </mapper>

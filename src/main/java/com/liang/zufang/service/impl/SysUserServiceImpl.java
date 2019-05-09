@@ -6,6 +6,7 @@ import com.liang.zufang.entity.sys.User;
 import com.liang.zufang.mapper.SysUserMapper;
 import com.liang.zufang.service.SysUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * @date 2019/5/7
  **/
 @Service
+@Transactional
 public class SysUserServiceImpl implements SysUserService {
 
     @Resource
@@ -58,7 +60,19 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    public void del(Long id) {
+        userMapper.delRolesByUserId(id);
+        userMapper.deleteById(id);
+    }
+
+    @Override
     public User selectUserById(Long id) {
         return userMapper.selectById(id);
+    }
+
+    @Override
+    public void saveUserRoles(Long userId, Long[] roles) {
+        userMapper.delRolesByUserId(userId);
+        userMapper.saveUserRoles(userId,roles);
     }
 }
