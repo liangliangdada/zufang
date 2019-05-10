@@ -2,22 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>字典列表</title>
     <#include "../common/static.ftl">
 </head>
 <body>
-
-<div>
-    <button class="layui-btn layui-btn-sm" id="add-menu">
-        <i class="layui-icon">&#xe608;</i>新增
+<div style="margin-top: 5px">
+    <button class="layui-btn layui-btn-sm" id="add-dictionary">
+        <i class="layui-icon">&#xe608;</i> 添加
     </button>
 </div>
-
-<table id="menu-table" class="layui-table" lay-filter="menu-table-filter"></table>
+<table id="dictionary-table" lay-filter="table-filter"></table>
 <!-- 操作列 -->
 <script type="text/html" id="row-tools">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="row-tools">
+    <div>
+        <button class="layui-btn layui-btn-xs" lay-event="edit">
+            编辑
+        </button>
+        <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="permission">
+            授权
+        </button>
+        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">
+            删除
+        </button>
+    </div>
 </script>
 <script>
     var renderTable;
@@ -39,54 +50,40 @@
                 treePidName: 'parentId',
                 treeDefaultClose: false,   // 默认折叠
                 treeLinkage: true,        // 父级展开时是否自动展开所有子级
-                elem: '#menu-table',
-                url: '${request.getContextPath()}/menu/list',
+                elem: '#dictionary-table',
+                url: '${request.getContextPath()}/dictionary/list',
                 cols: [[
                     {type: 'numbers'},
                     {field: 'name', title: '名称'},
-                    {field: 'url', title: 'url',templet: function (d) {
-                            return d.url == null?"":d.url;
-                    }},
-                    {field: 'code', title: '权限编码'},
-                    {field: 'type', title: '类型',align: 'center',templet: function (d) {
-                            if (d.type == 1) {
-                                return '<span class="layui-badge layui-bg-gray">按钮</span>';
-                            }
-                            if (d.parentId == 0) {
-                                return '<span class="layui-badge layui-bg-blue">目录</span>';
-                            } else {
-                                return '<span class="layui-badge-rim">菜单</span>';
-                            }
-                        }},
+                    {field: 'keyValue', title: 'key'},
                     {field: 'sort', title: '排序',align: 'center'},
                     {templet: '#row-tools', width: 120, align: 'center', title: '操作'}
-
                 ]]
             });
         };
         renderTable();
 
         //监听工具条
-        table.on('tool(menu-table-filter)', function (obj) {
+        table.on('tool(table-filter)', function (obj) {
             var data = obj.data;
             var layEvent = obj.event;
             if (layEvent === 'edit') {
-                commons.openFrame("${request.getContextPath()}/menu/edit?id="+data.id,"新增菜单","500px","450px");
+                commons.openFrame("${request.getContextPath()}/dictionary/edit?id="+data.id,"编辑字典","500px","350px");
             } else if (layEvent === 'del') {
                 del(data.id);
             }
         });
 
         //添加
-        $('#add-menu').click(function () {
-            commons.openFrame("${request.getContextPath()}/menu/edit","新增菜单","500px","450px");
+        $('#add-dictionary').click(function () {
+            commons.openFrame("${request.getContextPath()}/dictionary/edit","新增字典","500px","350px");
         });
 
         //删除
         function del(id) {
-            layer.confirm("确认删除该菜单及其子菜单？", function(index){
+            layer.confirm("确认删除该字典及其子项？", function(index){
                 $.ajax({
-                    url: "${request.getContextPath()}/menu/del",
+                    url: "${request.getContextPath()}/dictionary/del",
                     type: "post",
                     data: {"id":id},
                     dataType:"json",
@@ -107,4 +104,4 @@
     });
 </script>
 </body>
-</html>    
+</html>

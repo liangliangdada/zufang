@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>菜单编辑</title>
+    <title>字典编辑</title>
     <#include "../common/static.ftl">
 </head>
 <body>
     <div>
-        <form class="layui-form form-class" lay-filter="menu-form-filter" action="${request.getContextPath()}/menu/save" method="post" >
+        <form class="layui-form form-class" lay-filter="form-filter" action="${request.getContextPath()}/dictionary/save" method="post" >
             <div class="layui-form-item" >
-                <label class="layui-form-label">上级菜单：</label>
+                <label class="layui-form-label">父级字典：</label>
                 <div class="layui-input-block">
                     <select name="parentId" lay-verify="required">
-                        <option value="0">一级菜单</option>
-                        <#list menuList as  item>
-                            <option value="${item.id}"  <#if menu?? && menu.parentId==item.id>selected</#if> >${item.name}</option>
+                        <option value="0">父级字典</option>
+                        <#list dictionaryList as  item>
+                            <option value="${item.id}"  <#if dictionary?? && dictionary.parentId==item.id>selected</#if> >${item.name}</option>
                         </#list>
                     </select>
                 </div>
@@ -23,39 +23,25 @@
                 <label class="layui-form-label">名称：</label>
                 <div class="layui-input-block">
                     <input type="text" name="name" required lay-verify="required" autocomplete="off" placeholder="请输入名称"
-                           class="layui-input" value="${(menu.name)!}">
+                           class="layui-input" value="${(dictionary.name)!}" />
                 </div>
             </div>
             <div class="layui-form-item" >
-                <label class="layui-form-label">链接：</label>
+                <label class="layui-form-label">key：</label>
                 <div class="layui-input-block">
-                    <input type="text" name="url" lay-verify="" autocomplete="off" placeholder="请输入链接"
-                           class="layui-input" value="${(menu.url)!}" >
-                </div>
-            </div>
-            <div class="layui-form-item" >
-                <label class="layui-form-label">编码：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="code" lay-verify="required" autocomplete="off" placeholder="请输入编码"
-                           class="layui-input" value="${(menu.code)!}" >
-                </div>
-            </div>
-            <div class="layui-form-item" >
-                <label class="layui-form-label">类型：</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="type" value="0" title="菜单" checked />
-                    <input type="radio" name="type" value="1" title="按钮" <#if menu?? && menu.type==1>checked</#if> />
+                    <input type="text" name="keyValue" lay-verify="required" autocomplete="off" placeholder="请输入key"
+                           class="layui-input" value="${(dictionary.keyValue)!}"  <#if dictionary??>readonly</#if>  />
                 </div>
             </div>
             <div class="layui-form-item" >
                 <label class="layui-form-label">排序：</label>
                 <div class="layui-input-block">
                     <input type="number" name="sort" lay-verify="required" autocomplete="off" placeholder="请输入排序号"
-                           class="layui-input" value="${(menu.sort)!}" >
+                           class="layui-input" value="${(dictionary.sort)!}" />
                 </div>
             </div>
             <div class="layui-hide">
-                <input name="id" type="hidden" value="${(menu.id)!}" >
+                <input name="id" type="hidden" value="${(dictionary.id)!}" />
                 <button class="layui-btn" lay-submit lay-filter="submit-filter" id="save"></button>
             </div>
         </form>
