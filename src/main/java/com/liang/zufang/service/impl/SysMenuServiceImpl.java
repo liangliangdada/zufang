@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liuliang
@@ -41,5 +42,10 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public Menu selectById(Long id) {
         return menuMapper.selectById(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> tree(Long roleId) {
+        return menuMapper.selectTree(roleId);
     }
 }

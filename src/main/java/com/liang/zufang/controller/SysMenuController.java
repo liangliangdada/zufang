@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liuliang
@@ -59,6 +60,17 @@ public class SysMenuController {
     public JsonResult del(Long id){
         menuService.del(id);
         return JsonResult.build(true, "删除成功！");
+    }
+
+    /**
+     * 菜单树
+     * @param roleId
+     * @return
+     */
+    @RequestMapping("tree")
+    @ResponseBody
+    public List<Map<String,Object>> tree(Long roleId){
+        return menuService.tree(roleId);
     }
 
 
