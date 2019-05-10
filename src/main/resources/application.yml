@@ -17,7 +17,7 @@ spring:
     suffix: .ftl
   datasource:
     druid:
-      url: jdbc:mysql://10.0.120.243:3306/zufang?useUnicode=true&characterEncoding=UTF8&serverTimezone=UTC
+      url: jdbc:mysql://10.0.120.243:3306/zufang?useUnicode=true&characterEncoding=UTF8&allowMultiQueries=true&serverTimezone=UTC
       username: root
       password: root
       driver-class-name: com.mysql.cj.jdbc.Driver

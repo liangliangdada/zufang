@@ -23,4 +23,23 @@ public class SysMenuServiceImpl implements SysMenuService {
     public List<Menu> selectAll(Menu menu) {
         return menuMapper.selectList(null);
     }
+
+    @Override
+    public void save(Menu menu) {
+        if(menu.getId() != null){
+            menuMapper.updateById(menu);
+        }else {
+            menuMapper.insert(menu);
+        }
+    }
+
+    @Override
+    public void del(Long id) {
+        menuMapper.deleteAllById(id);
+    }
+
+    @Override
+    public Menu selectById(Long id) {
+        return menuMapper.selectById(id);
+    }
 }
