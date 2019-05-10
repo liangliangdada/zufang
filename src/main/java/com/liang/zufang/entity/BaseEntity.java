@@ -7,6 +7,7 @@ package com.liang.zufang.entity;
  **/
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -6446834172087299719L;
 
+    @TableId
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

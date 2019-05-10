@@ -2,6 +2,7 @@ package com.liang.zufang.entity.sys;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.liang.zufang.entity.BaseEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
 import javax.persistence.Column;
@@ -54,7 +55,7 @@ public class User extends BaseEntity {
     }
 
     public String getPassword() {
-        return password==null?DigestUtils.md5DigestAsHex("123456".getBytes()):password;
+        return StringUtils.isBlank(password)?DigestUtils.md5DigestAsHex("123456".getBytes()):password;
     }
 
     public void setPassword(String password) {

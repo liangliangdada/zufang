@@ -19,7 +19,7 @@ import java.util.List;
  **/
 @Service
 @Transactional
-public class SysUserServiceImpl implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper,User>  implements SysUserService {
 
     @Resource
     private SysUserMapper userMapper;
@@ -53,15 +53,6 @@ public class SysUserServiceImpl implements SysUserService {
             queryWrapper.like("name", user.getName());
         }
         return userMapper.selectList(queryWrapper);
-    }
-
-    @Override
-    public void save(User user) {
-        if(user.getId() != null){
-            userMapper.updateById(user);
-        }else {
-            userMapper.insert(user);
-        }
     }
 
     @Override

@@ -51,7 +51,7 @@ public class SysMenuController {
     @RequestMapping("save")
     @ResponseBody
     public JsonResult save(Menu menu){
-        menuService.save(menu);
+        menuService.saveOrUpdate(menu);
         return JsonResult.build(true, "保存成功！");
     }
 

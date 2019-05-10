@@ -5,11 +5,9 @@ import com.liang.zufang.entity.sys.Menu;
 import java.util.List;
 import java.util.Map;
 
-public interface SysMenuService {
+public interface SysMenuService extends BaseService<Menu> {
 
     List<Menu> selectAll(Menu menu);
-
-    void save(Menu menu);
 
     void del(Long id);
 

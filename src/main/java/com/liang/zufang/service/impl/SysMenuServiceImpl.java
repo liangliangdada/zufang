@@ -1,5 +1,6 @@
 package com.liang.zufang.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liang.zufang.entity.sys.Menu;
 import com.liang.zufang.mapper.SysMenuMapper;
 import com.liang.zufang.service.SysMenuService;
@@ -15,7 +16,7 @@ import java.util.Map;
  * @date 2019/5/9
  **/
 @Service
-public class SysMenuServiceImpl implements SysMenuService {
+public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper,Menu> implements SysMenuService {
 
     @Resource
     private SysMenuMapper menuMapper;
@@ -23,15 +24,6 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public List<Menu> selectAll(Menu menu) {
         return menuMapper.selectList(null);
-    }
-
-    @Override
-    public void save(Menu menu) {
-        if(menu.getId() != null){
-            menuMapper.updateById(menu);
-        }else {
-            menuMapper.insert(menu);
-        }
     }
 
     @Override

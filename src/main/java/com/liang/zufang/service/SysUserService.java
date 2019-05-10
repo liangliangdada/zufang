@@ -5,7 +5,7 @@ import com.liang.zufang.entity.sys.User;
 
 import java.util.List;
 
-public interface SysUserService {
+public interface SysUserService extends BaseService<User>{
 
     User selectUserByUserName(String username);
 
@@ -26,8 +26,6 @@ public interface SysUserService {
     List<Menu> selectMenusByUserId(Long id);
 
     List<User> selectAll(User user);
-
-    void save(User user);
 
     User selectUserById(Long id);
 

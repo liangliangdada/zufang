@@ -55,7 +55,7 @@ public class SysUserController {
     @ResponseBody
     public JsonResult save(User user){
         try {
-            userService.save(user);
+            userService.saveOrUpdate(user);
         }catch (Exception e){
             if(e instanceof DuplicateKeyException){
                 return JsonResult.build(false, "用户名重复！");
