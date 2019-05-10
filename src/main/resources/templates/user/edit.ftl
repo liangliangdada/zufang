@@ -23,8 +23,9 @@
                 </div>
             </div>
             <div class="layui-hide">
-                <input name="id" type="hidden" value="${(user.id)!}" >
-                <button class="layui-btn" lay-submit lay-filter="user-submit-filter" id="submitForm"></button>
+                <input name="id" type="text" value="${(user.id)!}" >
+                <input name="password" value="${(user.password)!}">
+                <button class="layui-btn" lay-submit lay-filter="user-submit-filter" id="save"></button>
             </div>
         </form>
     </div>

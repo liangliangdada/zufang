@@ -22,7 +22,7 @@
             </div>
             <div class="form-group pull-right input-password-box">
                 <label style="top: 15px">密码</label>
-                <input name="password" id="password" value="888"  style="margin-top: 10px" class="input-text" autocomplete="off" type="password" required="" lay-verify="required" placeholder="密码">
+                <input name="password" id="password" value="123456"  style="margin-top: 10px" class="input-text" autocomplete="off" type="password" required="" lay-verify="required" placeholder="密码">
             </div>
         </div>
 

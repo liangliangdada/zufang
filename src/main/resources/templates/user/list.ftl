@@ -25,13 +25,13 @@
 </script>
 <script type="text/html" id="row-tools">
     <div>
-        <button class="layui-btn layui-btn-sm" lay-event="edit">
+        <button class="layui-btn layui-btn-xs" lay-event="edit">
             编辑
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="permission">
+        <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="permission">
             授权
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">
+        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">
             删除
         </button>
     </div>
@@ -41,37 +41,30 @@
         var $ = layui.jquery;
         var layer = layui.layer;
         var table = layui.table;
-        layer.config({
-            skin: 'layer-open-class'
-        });
 
         //数据表格
-        table.render({
-            elem: '#user-table',
-            toolbar:'#table-tools',
-            height: 'full-45',
-            url: '${request.getContextPath()}/user/list',
-            page: true,
-            limit:20,
-            limits:[10,20,30],
-            loading:true,
-            cols: [[
+        var options = {
+            elem : '#user-table',
+            url : '${request.getContextPath()}/user/list',
+            cols : [[
                 {field: 'name', title: '姓名',align:'center'},
                 {field: 'userName', title: '用户名',align:'center'},
                 {field: 'status', title: '用户状态',align:'center',templet:function (row) {
-                    if(row.status == 0){
-                        return '正常';
-                    }
+                        if(row.status == 0){
+                            return '正常';
+                        }
                 }},
                 {field: '_', title: '操作',align:'center',toolbar:'#row-tools'}
-            ]]
-        });
+            ]],
+            tools : '#table-tools'
+        };
+        commons.initTable(table,options);
 
         //头部工具栏事件
         table.on('toolbar(table-filter)', function(obj){
             var layEvent = obj.event; //获得 lay-event 对应的值
             if(layEvent == 'add'){
-                edit("${request.getContextPath()}/user/edit");
+                commons.openFrame("${request.getContextPath()}/user/edit",'用户新增','500px','300px');
             }
         });
 
@@ -80,71 +73,23 @@
             var data = obj.data;
             var layEvent = obj.event;
             if(layEvent == 'edit'){
-                edit("${request.getContextPath()}/user/edit?id="+data.id);
+                commons.openFrame("${request.getContextPath()}/user/edit?id="+data.id,'用户编辑','500px','300px');
             }else if(layEvent == 'permission'){
-                permission(data.id);
+                commons.openFrame('${request.getContextPath()}/user/permission?id='+data.id,"用户授权",'300px', '300px');
             }else if(layEvent == 'del'){
-                del(data.id);
+                var options = {
+                    msg : "确认删除该用户？",
+                    url :"${request.getContextPath()}/user/del",
+                    data : {"id":data.id},
+                    tableId : "user-table" //需要刷新的表格id
+                };
+                commons.deleteRow(table,options);
             }
         });
 
-        //编辑
-        function edit(url) {
-            layer.open({
-                title:'用户',
-                type: 2,
-                content: url,
-                area: ['500px', '300px'],
-                btn: ['保存','取消'],
-                yes: function(index, layero){
-                    var submitForm = layer.getChildFrame('#submitForm', index);
-                    submitForm.click();
-                    //table.reload('user-table');
-                }
-            });
-        };
-
-        //授权
-        function permission(id) {
-            layer.open({
-                title:'用户授权',
-                type: 2,
-                content: '${request.getContextPath()}/user/permission?id='+id,
-                area: ['300px', '300px'],
-                btn: ['保存','取消'],
-                yes: function(index, layero){
-                    var submitForm = layer.getChildFrame('#save', index);
-                    submitForm.click();
-                }
-            });
-        };
-
-        //删除
-        function del(id) {
-            layer.confirm('确认删除该用户？', function(index){
-                $.ajax({
-                    url: '${request.getContextPath()}/user/del',
-                    type: "post",
-                    data: {"id":id},
-                    dataType:"json",
-                    success: function (data) {
-                        if(data.success){
-                            layer.msg(data.msg, {icon: 1});
-                            table.reload('user-table');
-                        }else{
-                            layer.msg(data.msg, {icon: 5});
-                        }
-                        return false;
-                    }
-                });
-                layer.close(index);
-            });
-        };
-
+        //表格搜索
         $("#search").click(function () {
-            var params = serializeObject("#search-form");
-            console.log(params);
-            table.reload('user-table', {where: params});
+            commons.searchTable(table,'#search-form','user-table');
         });
 
     });

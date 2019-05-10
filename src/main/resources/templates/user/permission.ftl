@@ -13,7 +13,6 @@
     <ul id="roleTree" class="ztree"></ul>
 </div>
 <div class="layui-hide">
-    <input id="userId" type="text" value="${userId}" />
     <button type="button" id="save"></button>
 </div>
 <script>
@@ -33,7 +32,6 @@
     $(document).ready(function(){
         zTreeObj = $.fn.zTree.init($("#roleTree"), setting);
         $("#save").click(function () {
-            var userId = $("#userId").val();
             var nodes = zTreeObj.getCheckedNodes(true);
             if(nodes.length == 0){
                 parent.layer.msg('请选择角色！！', {icon: 5});
