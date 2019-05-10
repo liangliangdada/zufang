@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户列表</title>
+    <title>角色列表</title>
     <#include "../common/static.ftl">
 </head>
 <body>
@@ -16,13 +16,13 @@
 </script>
 <script type="text/html" id="row-tools">
     <div>
-        <button class="layui-btn layui-btn-sm" lay-event="edit">
+        <button class="layui-btn layui-btn-xs" lay-event="edit">
             编辑
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="permission">
+        <button class="layui-btn layui-btn-xs layui-btn-normal" lay-event="permission">
             授权
         </button>
-        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">
+        <button class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">
             删除
         </button>
     </div>
@@ -32,32 +32,25 @@
         var $ = layui.jquery;
         var layer = layui.layer;
         var table = layui.table;
-        layer.config({
-            skin: 'layer-open-class'
-        });
 
-        table.render({
-            elem: '#role-table',
-            toolbar:'#table-tools',
-            height: 'full-20',
-            url: '${request.getContextPath()}/role/list',
-            page: true,
-            limit:20,
-            limits:[10,20,30],
-            loading:true,
-            cols: [[
+        var options = {
+            elem : '#role-table',
+            tools : '#table-tools',
+            url : '${request.getContextPath()}/role/list',
+            cols : [[
                 {field: 'name', title: '角色',align:'center'},
-                {field: 'code', title: 'CODE',align:'center'},
+                {field: 'code', title: '编码',align:'center'},
                 {field: 'description', title: '描述',align:'center'},
                 {field: '_', title: '操作',align:'center',toolbar:'#row-tools'}
             ]]
-        });
+        };
+        commons.initTable(table,options);
 
         //头部工具栏事件
         table.on('toolbar(table-filter)', function(obj){
-            var layEvent = obj.event; //获得 lay-event 对应的值
+            var layEvent = obj.event;
             if(layEvent == 'add'){
-                edit("${request.getContextPath()}/user/edit");
+                commons.openFrame("${request.getContextPath()}/role/edit","新增角色","500px","300px")
             }
         });
 
@@ -66,45 +59,19 @@
             var data = obj.data;
             var layEvent = obj.event;
             if(layEvent == 'edit'){
-                edit("${request.getContextPath()}/user/edit?id="+data.id);
+                commons.openFrame("${request.getContextPath()}/role/edit?id="+data.id,"编辑角色","500px","300px")
             }else if(layEvent == 'permission'){
-                permission();
+                commons.openFrame("${request.getContextPath()}/role/permission?roleId="+data.id,"角色授权","500px","300px")
             }else if(layEvent == 'del'){
-                layer.msg('del');
+                var options={
+                    msg:"确认删除该角色?",
+                    url :"${request.getContextPath()}/role/del",
+                    data : {"id":data.id},
+                    tableId : "role-table"
+                };
+                commons.deleteRow(table,options);
             }
         });
-
-        //编辑
-        function edit(url) {
-            layer.open({
-                title:'用户',
-                type: 2,
-                content: url,
-                area: ['500px', '300px'],
-                btn: ['保存','取消'],
-                yes: function(index, layero){
-                    var submitForm = layer.getChildFrame('#submitForm', index);
-                    submitForm.click();
-                    table.reload('role-table');
-                }
-            });
-        };
-
-        //授权
-        function permission() {
-            layer.open({
-                title:'用户授权',
-                type: 2,
-                content: '${request.getContextPath()}/user/permission',
-                area: ['500px', '300px'],
-                btn: ['保存','取消'],
-                yes: function(index, layero){
-                    var submitForm = layer.getChildFrame('#submitForm', index);
-                    submitForm.click();
-                    table.reload('role-table');
-                }
-            });
-        };
 
     });
 </script>

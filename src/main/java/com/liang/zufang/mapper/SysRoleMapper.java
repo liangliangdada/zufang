@@ -10,4 +10,7 @@ public interface SysRoleMapper extends BaseMapper<Role> {
 
     List<Map<String,Object>> selectTreeByUserId(Long userId);
 
+    void saveRoleMenus(Long roleId, Long[] menus);
+
+    void delMenuByRoleId(Long roleId);
 }
